@@ -1,0 +1,48 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: operator
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - requested_slot: operator
+  - slot_was_set:
+    - operator: "add"
+  - slot_was_set:
+    - requested_slot: number_1
+  - slot_was_set:
+    - number_1: "5"
+  - slot_was_set:
+    - requested_slot: number_2
+  - slot_was_set:
+    - number_2: "8"
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: add_two_numbers
+
+
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
+
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye

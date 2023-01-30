@@ -1,0 +1,82 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - operator
+  - number_1
+  - number_2
+      
+
+entities:
+  - operator
+  - number_1
+  - number_2
+
+slots:
+  operator:
+    type: text
+    influence_conversation: true 
+    mappings:
+      - type: from_entity
+        entity: operator
+
+  number_1:
+    type: float
+    influence_conversation: true 
+    mappings:
+      - type: from_entity
+        entity: number_1
+       
+  number_2:
+    type: float
+    influence_conversation: true 
+    mappings:
+      - type: from_entity
+        entity: number_2
+
+responses:
+  utter_greet:
+  - text: "Hey! How may i assist you?"
+
+  utter_ask_number_1:
+  - text: "Enter your first input number"
+
+  utter_ask_number_2:
+  - text: "Enter your second input number"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+forms:
+  number_form:
+    required_slots:
+        - number_1
+        - number_2
+        
+actions:
+  - validate_number_form
+  - add_two_numbers
+ 
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
